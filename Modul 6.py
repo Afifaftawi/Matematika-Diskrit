@@ -1,3 +1,4 @@
+#DESIMAL KE BINER
 def proses_desimal_ke_biner(n):
     hasil = []
     asli = n
@@ -8,6 +9,7 @@ def proses_desimal_ke_biner(n):
     hasil.reverse()
     print(f"\nHasil biner dari {asli} adalah: {''.join(hasil)}")
 
+#DESIMAL KE OKTAL
 def proses_desimal_ke_oktal(n):
     hasil = []
     asli = n
@@ -18,6 +20,7 @@ def proses_desimal_ke_oktal(n):
     hasil.reverse()
     print(f"\nHasil oktal dari {asli} adalah: {''.join(hasil)}")
 
+#DESIMAL KE HEKSA
 def proses_desimal_ke_heksa(n):
     simbol = "0123456789ABCDEF"
     hasil = []
@@ -30,6 +33,7 @@ def proses_desimal_ke_heksa(n):
     hasil.reverse()
     print(f"\nHasil heksadesimal dari {asli} adalah: {''.join(hasil)}")
 
+#BINER KE DESIMAL
 def proses_biner_ke_desimal(biner):
     biner = biner[::-1]
     total = 0
@@ -40,6 +44,7 @@ def proses_biner_ke_desimal(biner):
         total += nilai
     print(f"Hasil desimal: {total}")
 
+#OKTAL KE DESIMAL
 def proses_oktal_ke_desimal(oktal):
     oktal = oktal[::-1]
     total = 0
@@ -50,6 +55,7 @@ def proses_oktal_ke_desimal(oktal):
         total += nilai
     print(f"Hasil desimal: {total}")
 
+#HEKSA KE DESIMAL
 def proses_heksa_ke_desimal(heksa):
     heksa = heksa[::-1].upper()
     simbol = "0123456789ABCDEF"
