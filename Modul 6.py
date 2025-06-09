@@ -1,75 +1,30 @@
-#DESIMAL KE BINER
-def proses_desimal_ke_biner(n):
-    hasil = []
-    asli = n
-    while n > 0:
-        hasil.append(str(n % 2))
-        print(f"{n} ÷ 2 = {n // 2} sisa {n % 2}")
-        n //= 2
-    hasil.reverse()
-    print(f"\nHasil biner dari {asli} adalah: {''.join(hasil)}")
-
-#DESIMAL KE OKTAL
-def proses_desimal_ke_oktal(n):
-    hasil = []
-    asli = n
-    while n > 0:
-        hasil.append(str(n % 8))
-        print(f"{n} ÷ 8 = {n // 8} sisa {n % 8}")
-        n //= 8
-    hasil.reverse()
-    print(f"\nHasil oktal dari {asli} adalah: {''.join(hasil)}")
-
-#DESIMAL KE HEKSA
-def proses_desimal_ke_heksa(n):
+def desimal_ke_basis(n, basis):
     simbol = "0123456789ABCDEF"
-    hasil = []
+    if n == 0:
+        print("Hasil: 0")
+        return
+    hasil = ""
     asli = n
     while n > 0:
-        sisa = n % 16
-        hasil.append(simbol[sisa])
-        print(f"{n} ÷ 16 = {n // 16} sisa {sisa} ({simbol[sisa]})")
-        n //= 16
-    hasil.reverse()
-    print(f"\nHasil heksadesimal dari {asli} adalah: {''.join(hasil)}")
+        sisa = n % basis
+        print(f"{n} ÷ {basis} = {n // basis} sisa {sisa} ({simbol[sisa]})" if basis==16 else f"{n} ÷ {basis} = {n // basis} sisa {sisa}")
+        hasil = simbol[sisa] + hasil
+        n //= basis
+    print(f"Hasil dari {asli} adalah: {hasil}")
 
-#BINER KE DESIMAL
-def proses_biner_ke_desimal(biner):
-    biner = biner[::-1]
-    total = 0
-    print("\nLangkah-langkah:")
-    for i in range(len(biner)):
-        nilai = int(biner[i]) * (2 ** i)
-        print(f"{biner[i]} × 2^{i} = {nilai}")
-        total += nilai
-    print(f"Hasil desimal: {total}")
-
-#OKTAL KE DESIMAL
-def proses_oktal_ke_desimal(oktal):
-    oktal = oktal[::-1]
-    total = 0
-    print("\nLangkah-langkah:")
-    for i in range(len(oktal)):
-        nilai = int(oktal[i]) * (8 ** i)
-        print(f"{oktal[i]} × 8^{i} = {nilai}")
-        total += nilai
-    print(f"Hasil desimal: {total}")
-
-#HEKSA KE DESIMAL
-def proses_heksa_ke_desimal(heksa):
-    heksa = heksa[::-1].upper()
+def basis_ke_desimal(num_str, basis):
     simbol = "0123456789ABCDEF"
+    num_str = num_str.upper()
     total = 0
-    print("\nLangkah-langkah:")
-    for i in range(len(heksa)):
-        nilai = simbol.index(heksa[i]) * (16 ** i)
-        print(f"{heksa[i]} × 16^{i} = {nilai}")
+    print("Langkah-langkah:")
+    for i, digit in enumerate(reversed(num_str)):
+        nilai = simbol.index(digit) * (basis ** i)
+        print(f"{digit} × {basis}^{i} = {nilai}")
         total += nilai
     print(f"Hasil desimal: {total}")
 
-# Menu
 while True:
-    print("\n=== KONVERSI BILANGAN ===")
+    print("\nMenu:")
     print("1. Desimal ke Biner")
     print("2. Desimal ke Oktal")
     print("3. Desimal ke Heksadesimal")
@@ -78,28 +33,28 @@ while True:
     print("6. Heksadesimal ke Desimal")
     print("7. Keluar")
 
-    pilihan = input("Pilih menu (1-7): ")
+    pilihan = input("Pilih (1-7): ")
 
     if pilihan == "1":
-        n = int(input("Masukkan bilangan desimal: "))
-        proses_desimal_ke_biner(n)
+        n = int(input("Masukkan desimal: "))
+        desimal_ke_basis(n, 2)
     elif pilihan == "2":
-        n = int(input("Masukkan bilangan desimal: "))
-        proses_desimal_ke_oktal(n)
+        n = int(input("Masukkan desimal: "))
+        desimal_ke_basis(n, 8)
     elif pilihan == "3":
-        n = int(input("Masukkan bilangan desimal: "))
-        proses_desimal_ke_heksa(n)
+        n = int(input("Masukkan desimal: "))
+        desimal_ke_basis(n, 16)
     elif pilihan == "4":
-        b = input("Masukkan bilangan biner: ")
-        proses_biner_ke_desimal(b)
+        b = input("Masukkan biner: ")
+        basis_ke_desimal(b, 2)
     elif pilihan == "5":
-        o = input("Masukkan bilangan oktal: ")
-        proses_oktal_ke_desimal(o)
+        o = input("Masukkan oktal: ")
+        basis_ke_desimal(o, 8)
     elif pilihan == "6":
-        h = input("Masukkan bilangan heksadesimal: ")
-        proses_heksa_ke_desimal(h)
+        h = input("Masukkan heksadesimal: ")
+        basis_ke_desimal(h, 16)
     elif pilihan == "7":
         print("Terima kasih!")
         break
     else:
-        print("Pilihan tidak valid.")
+        print("Pilihan salah.")
